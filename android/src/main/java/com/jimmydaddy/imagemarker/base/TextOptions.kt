@@ -135,8 +135,8 @@ data class TextOptions(val options: ReadableMap) {
     val x = position.x
     val y = position.y
 
-    val centerX: Float = x + textWidth / 2
-    val centerY: Float = y + textHeight / 2
+    val centerX: Float = x + x / 2
+    val centerY: Float = y + y / 2
 
     canvas.save()
     //val textRectWithPosition = RectF(x, y , textWidth.toFloat(), textHeight.toFloat())
@@ -186,7 +186,7 @@ data class TextOptions(val options: ReadableMap) {
     val textX = when(textPaint.textAlign) {
       Paint.Align.RIGHT -> x + textWidth
       Paint.Align.CENTER -> x + textWidth / 2
-      Paint.Align.LEFT -> x+margin
+      Paint.Align.LEFT -> x
     }
     canvas.translate(textX, y)
     textLayout.draw(canvas)
