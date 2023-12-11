@@ -133,8 +133,6 @@ data class TextOptions(val options: ReadableMap) {
       }
     }
 
-
-
     val x = position.x
     val y = position.y
 
@@ -147,14 +145,15 @@ data class TextOptions(val options: ReadableMap) {
               ""
     )
 
-    val centerX: Float = x + maxWidth / 2
-    val centerY: Float = y + maxHeight / 2
+    val centerX: Float = (this.x?.toFloat()?:0f) + textWidth / 2
+    val centerY: Float = (this.y?.toFloat()?:0f) + textHeight / 2
 
     canvas.save()
-    //val textRectWithPosition = RectF(x, y , textWidth.toFloat(), textHeight.toFloat())
+    canvas.rotate(style.rotate.toFloat(),centerX , centerY)
 
 
-    canvas.rotate(style.rotate.toFloat(), centerX, centerY)
+//    val textRectWithPosition = RectF(x, y , textWidth.toFloat(), textHeight.toFloat())
+//    canvas.rotate(style.rotate.toFloat(), textRectWithPosition.centerX(), textRectWithPosition.centerY())
 
     // Draw text background
     if (null != style.textBackgroundStyle) {
