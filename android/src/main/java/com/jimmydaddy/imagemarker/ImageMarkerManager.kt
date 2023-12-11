@@ -83,14 +83,14 @@ class ImageMarkerManager(private val context: ReactApplicationContext) : ReactCo
           )
           canvas.drawBitmap(markerBitmap, pos.x, pos.y, markOpts.imageOption.applyStyle())
         } else {
-          val x = Utils.parseSpreadValue(markOpts.x, width.toFloat()) - (markerBitmap!!.width-originWidth)/2
-          val y = Utils.parseSpreadValue(markOpts.y, width.toFloat()) - (markerBitmap!!.height-originHeight)/2
-          canvas.drawBitmap(
-            markerBitmap!!,
-            Utils.parseSpreadValue(markOpts.x, width.toFloat()),
-            Utils.parseSpreadValue(markOpts.y, height.toFloat()),
-            markOpts.imageOption.applyStyle()
-          )
+                 val px: Float = x + originWidth / 2f
+                   val py: Float = y + originHeight / 2f
+
+                   canvas.save()
+                   canvas.translate(px, py)
+                   canvas.rotate(markOpts.imageOption.rotate)
+                   canvas.drawBitmap(markerBitmap, -originWidth / 2f, -originHeight / 2f, markOpts.imageOption.applyStyle())
+
         }
         canvas.restore()
 
