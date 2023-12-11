@@ -155,7 +155,7 @@ data class TextOptions(val options: ReadableMap) {
 
     canvas.save()
 
-    canvas.rotate(style.rotate.toFloat(), centerX+10, centerY+10)
+    canvas.rotate(style.rotate.toFloat(), centerX+20, centerY+20)
 
 
 //    val textRectWithPosition = RectF(this.x?.toFloat()?:0f, this.y?.toFloat()?:0f , textWidth.toFloat(), textHeight.toFloat())
