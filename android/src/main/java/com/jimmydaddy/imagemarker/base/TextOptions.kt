@@ -115,7 +115,7 @@ data class TextOptions(val options: ReadableMap) {
       ).toInt()
     }
     val margin = DEFAULT_MARGIN
-    var position = Position(margin.toFloat(), margin.toFloat())
+    var position = Position(margin, margin)
     if (positionEnum != null) {
       position = Position.getTextPosition(
         positionEnum,
@@ -135,8 +135,8 @@ data class TextOptions(val options: ReadableMap) {
     val x = position.x
     val y = position.y
 
-    val centerX: Float = x + textWidth / 2f
-    val centerY: Float = y + textHeight / 2f
+    val centerX: Float = x + textWidth / 2
+    val centerY: Float = y + textHeight / 2
 
     canvas.save()
     //val textRectWithPosition = RectF(x, y , textWidth.toFloat(), textHeight.toFloat())
