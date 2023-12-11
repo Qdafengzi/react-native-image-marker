@@ -68,6 +68,8 @@ class ImageMarkerManager(private val context: ReactApplicationContext) : ReactCo
         canvas.save()
         val markOpts = opts.watermarkImages[i]
         var markerBitmap = markers[i]
+        val originWidth = markerBitmap!!.width
+        val originHeight = markerBitmap!!.height
         if (markOpts.imageOption.rotate != 0f) {
           markerBitmap = ImageProcess.rotate(markerBitmap!!, markOpts.imageOption.rotate)
         }
@@ -81,6 +83,8 @@ class ImageMarkerManager(private val context: ReactApplicationContext) : ReactCo
           )
           canvas.drawBitmap(markerBitmap, pos.x, pos.y, markOpts.imageOption.applyStyle())
         } else {
+          val x = Utils.parseSpreadValue(markOpts.x, width.toFloat()) - (markerBitmap!!.width-originWidth)/2
+          val y = Utils.parseSpreadValue(markOpts.y, width.toFloat()) - (markerBitmap!!.height-originHeight)/2
           canvas.drawBitmap(
             markerBitmap!!,
             Utils.parseSpreadValue(markOpts.x, width.toFloat()),

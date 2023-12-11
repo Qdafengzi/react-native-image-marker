@@ -56,9 +56,10 @@ data class TextOptions(val options: ReadableMap) {
         style.shadowLayerStyle!!.color
       )
     }
+    var typeface = Typeface.create(Typeface.DEFAULT, Typeface.NORMAL)
     try {
       //设置字体失败时使用默认字体
-      textPaint.typeface = ReactFontManager.getInstance()
+      typeface = ReactFontManager.getInstance()
         .getTypeface(style.fontName!!, Typeface.NORMAL, context.assets)
     } catch (e: Exception) {
       textPaint.typeface = Typeface.DEFAULT
@@ -73,7 +74,6 @@ data class TextOptions(val options: ReadableMap) {
     textPaint.color = Color.parseColor(Utils.transRGBColor(style.color))
     textPaint.isUnderlineText = style.underline
     textPaint.textSkewX = style.skewX!!
-    var typeface = Typeface.create(Typeface.DEFAULT, Typeface.NORMAL)
     if (style.italic && style.bold) {
       typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD_ITALIC)
     } else if (style.italic) {
