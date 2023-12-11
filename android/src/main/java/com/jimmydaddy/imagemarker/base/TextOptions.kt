@@ -186,7 +186,7 @@ data class TextOptions(val options: ReadableMap) {
     val textX = when(textPaint.textAlign) {
       Paint.Align.RIGHT -> x + textWidth
       Paint.Align.CENTER -> x + textWidth / 2
-      Paint.Align.LEFT -> x
+      Paint.Align.LEFT -> x+margin
     }
     canvas.translate(textX, y)
     textLayout.draw(canvas)
