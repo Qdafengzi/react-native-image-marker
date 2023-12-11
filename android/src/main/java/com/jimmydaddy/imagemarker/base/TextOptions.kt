@@ -66,7 +66,7 @@ data class TextOptions(val options: ReadableMap) {
       textPaint.typeface = Typeface.DEFAULT
     }
     val textSize = TypedValue.applyDimension(
-      TypedValue.COMPLEX_UNIT_SP,
+      TypedValue.COMPLEX_UNIT_DIP,
       style.fontSize.toFloat(),
       context.resources.displayMetrics
     )
@@ -148,6 +148,7 @@ data class TextOptions(val options: ReadableMap) {
               "y:${y}" +
               "this x:${this.x}" +
               "this y:${this.y}" +
+              "textSize:${textSize}" +
               ""
     )
 
