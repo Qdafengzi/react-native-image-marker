@@ -66,7 +66,7 @@ data class TextOptions(val options: ReadableMap) {
       textPaint.typeface = Typeface.DEFAULT
     }
     val textSize = TypedValue.applyDimension(
-      TypedValue.COMPLEX_UNIT_SP,
+      TypedValue.COMPLEX_UNIT_DIP,
       style.fontSize.toFloat(),
       context.resources.displayMetrics
     )
@@ -90,7 +90,7 @@ data class TextOptions(val options: ReadableMap) {
       val builder =
         StaticLayout.Builder.obtain(text!!, 0, text!!.length, textPaint, canvas.width)
       builder.setAlignment(Layout.Alignment.ALIGN_NORMAL)
-//      builder.setLineSpacing(0.0f, 1.0f)
+      builder.setLineSpacing(0.0f, 1.0f)
       builder.setIncludePad(false)
       builder.build()
     } else {
@@ -139,24 +139,23 @@ data class TextOptions(val options: ReadableMap) {
 
     Log.d(
       "Marker", "角度：${style.rotate.toFloat()}\n" +
-              "textWidth:${textWidth}" +
-              "textHeight:${textHeight}" +
-              "maxWidth:${maxWidth}" +
-              "maxHeight:${maxHeight}" +
-              "x:${x}" +
-              "y:${y}" +
-              "this x:${this.x}" +
-              "this y:${this.y}" +
-              "textSize:${textSize}" +
+              "textWidth:${textWidth}\n" +
+              "textHeight:${textHeight}\n" +
+              "maxWidth:${maxWidth}\n" +
+              "maxHeight:${maxHeight}\n" +
+              "x:${x}\n" +
+              "y:${y}\n" +
+              "this x:${this.x}\n" +
+              "this y:${this.y}\n" +
+              "textSize:${textSize}\n" +
               ""
     )
-
     val centerX: Float = x + textWidth / 2
     val centerY: Float = y + textHeight / 2
 
     canvas.save()
 
-    canvas.rotate(style.rotate.toFloat(), centerX, centerY)
+    canvas.rotate(style.rotate.toFloat(), centerX+10, centerY+10)
 
 
 //    val textRectWithPosition = RectF(this.x?.toFloat()?:0f, this.y?.toFloat()?:0f , textWidth.toFloat(), textHeight.toFloat())
