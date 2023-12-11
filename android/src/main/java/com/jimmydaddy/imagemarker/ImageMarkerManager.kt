@@ -179,6 +179,12 @@ class ImageMarkerManager(private val context: ReactApplicationContext) : ReactCo
       if (opts.backgroundImage.rotate != 0f) {
         icon = ImageProcess.rotate(icon, opts.backgroundImage.rotate)
       }
+
+
+      Log.d("Marker","rotate:${opts.backgroundImage.rotate} \n" +
+              "watermarkTexts:${opts.watermarkTexts}" +
+              "")
+
       if (dest == BASE64) {
         val base64Stream = ByteArrayOutputStream()
         icon.compress(CompressFormat.PNG, opts.quality, base64Stream)
