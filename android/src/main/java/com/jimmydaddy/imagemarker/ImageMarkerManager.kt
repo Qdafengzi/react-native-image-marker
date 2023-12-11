@@ -71,7 +71,6 @@ class ImageMarkerManager(private val context: ReactApplicationContext) : ReactCo
         val originWidth = markerBitmap!!.width
         val originHeight = markerBitmap!!.height
         if (markOpts.imageOption.rotate != 0f) {
-         Log.d("Maker","有旋转角度")
           markerBitmap = ImageProcess.rotate(markerBitmap!!, markOpts.imageOption.rotate)
         }
         if (markOpts.positionEnum != null) {
@@ -82,22 +81,14 @@ class ImageMarkerManager(private val context: ReactApplicationContext) : ReactCo
             width,
             height
           )
-          Log.d("Maker","markOpts.positionEnum != null")
           canvas.drawBitmap(markerBitmap, pos.x, pos.y, markOpts.imageOption.applyStyle())
         } else {
-        Log.d("Maker","markOpts.positionEnum ========= null")
-                  val px: Float = (markOpts.x?.toFloat()?:0f) + originWidth / 2f
-                    val py: Float =( markOpts.y?.toFloat()?:0f) + originHeight / 2f
-
-                    Log.d("Maker","x:"+(markOpts.x?.toFloat()?:0f))
-                    Log.d("Maker","rotate:"+markOpts.imageOption.rotate)
-                    Log.d("Maker","originWidth:"+originWidth)
-                    Log.d("Maker","originHeight:"+originHeight)
-
-                    canvas.save()
-                    canvas.translate(px, py)
-                    canvas.rotate(markOpts.imageOption.rotate)
-                    canvas.drawBitmap(markerBitmap, -originWidth / 2f, -originHeight / 2f, markOpts.imageOption.applyStyle())
+                canvas.drawBitmap(
+                   markerBitmap!!,
+                   Utils.parseSpreadValue(markOpts.x, width.toFloat()),
+                   Utils.parseSpreadValue(markOpts.y, height.toFloat()),
+                   markOpts.imageOption.applyStyle()
+                 )
 
         }
         canvas.restore()
@@ -195,12 +186,14 @@ class ImageMarkerManager(private val context: ReactApplicationContext) : ReactCo
         base64Stream.close()
         val bitmapBytes = base64Stream.toByteArray()
         val result = Base64.encodeToString(bitmapBytes, Base64.DEFAULT)
+           Log.d("Maker","this this this000000")
         promise.resolve("data:image/png;base64,$result")
       } else {
         bos = BufferedOutputStream(FileOutputStream(dest))
         icon.compress(getSaveFormat(opts.saveFormat), opts.quality, bos)
         bos.flush()
         bos.close()
+         Log.d("Maker","this this this1111")
         //保存成功的
         promise.resolve(dest)
       }
