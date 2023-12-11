@@ -71,6 +71,7 @@ class ImageMarkerManager(private val context: ReactApplicationContext) : ReactCo
         val originWidth = markerBitmap!!.width
         val originHeight = markerBitmap!!.height
         if (markOpts.imageOption.rotate != 0f) {
+         Log.d("Maker","有旋转角度")
           markerBitmap = ImageProcess.rotate(markerBitmap!!, markOpts.imageOption.rotate)
         }
         if (markOpts.positionEnum != null) {
@@ -81,8 +82,10 @@ class ImageMarkerManager(private val context: ReactApplicationContext) : ReactCo
             width,
             height
           )
+          Log.d("Maker","markOpts.positionEnum != null")
           canvas.drawBitmap(markerBitmap, pos.x, pos.y, markOpts.imageOption.applyStyle())
         } else {
+        Log.d("Maker","markOpts.positionEnum ========= null")
                   val px: Float = (markOpts.x?.toFloat()?:0f) + originWidth / 2f
                     val py: Float =( markOpts.y?.toFloat()?:0f) + originHeight / 2f
 
