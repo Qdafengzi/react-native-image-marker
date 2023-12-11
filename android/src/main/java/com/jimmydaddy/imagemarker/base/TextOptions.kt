@@ -132,20 +132,27 @@ data class TextOptions(val options: ReadableMap) {
         position.y = Utils.parseSpreadValue(y, maxHeight.toFloat())
       }
     }
+
+
+
     val x = position.x
     val y = position.y
 
-    val centerX: Float = x + x / 2
-    val centerY: Float = y + y / 2
-
-    canvas.save()
-    //val textRectWithPosition = RectF(x, y , textWidth.toFloat(), textHeight.toFloat())
     Log.d(
       "Marker", "角度：${style.rotate.toFloat()}\n" +
               "x:${x}" +
               "y:${y}" +
+              "this x:${this.x}" +
+              "this y:${this.y}" +
               ""
     )
+
+    val centerX: Float = x + textWidth / 2
+    val centerY: Float = y + textHeight / 2
+
+    canvas.save()
+    //val textRectWithPosition = RectF(x, y , textWidth.toFloat(), textHeight.toFloat())
+
 
     canvas.rotate(style.rotate.toFloat(), centerX, centerY)
 
