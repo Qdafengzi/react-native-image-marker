@@ -133,6 +133,14 @@ data class TextOptions(val options: ReadableMap) {
         position.y = Utils.parseSpreadValue(y, maxHeight.toFloat())
       }
     }
+    val textX = when(textPaint.textAlign) {
+      Paint.Align.RIGHT -> x + textWidth
+      Paint.Align.CENTER -> x + textWidth / 2
+      Paint.Align.LEFT -> x
+    }
+    canvas.translate(textX?.toFloat()?:0f, y?.toFloat()?:0f)
+    canvas.save()
+
 
     val x = position.x
     val y = position.y
@@ -154,6 +162,12 @@ data class TextOptions(val options: ReadableMap) {
     val centerY: Float = y + textHeight / 2 + margin
 
     canvas.save()
+
+
+
+
+
+
     canvas.rotate(style.rotate.toFloat(),centerX , centerY)
 
 
@@ -194,12 +208,12 @@ data class TextOptions(val options: ReadableMap) {
     }
 
     Log.d("Marker","TextAlign:${textPaint.textAlign}")
-    val textX = when(textPaint.textAlign) {
-      Paint.Align.RIGHT -> x + textWidth
-      Paint.Align.CENTER -> x + textWidth / 2
-      Paint.Align.LEFT -> x
-    }
-    canvas.translate(textX, y)
+//    val textX = when(textPaint.textAlign) {
+//      Paint.Align.RIGHT -> x + textWidth
+//      Paint.Align.CENTER -> x + textWidth / 2
+//      Paint.Align.LEFT -> x
+//    }
+//    canvas.translate(textX, y)
     textLayout.draw(canvas)
     canvas.restore()
   }
