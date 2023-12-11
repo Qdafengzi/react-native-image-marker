@@ -135,18 +135,18 @@ data class TextOptions(val options: ReadableMap) {
     val x = position.x
     val y = position.y
 
-    val px: Float = x + textWidth / 2
-    val py: Float = y + textHeight / 2
+    val centerX: Float = x + textWidth / 2f
+    val centerY: Float = y + textHeight / 2f
 
     canvas.save()
-    val textRectWithPosition = RectF(x, y , textWidth.toFloat(), textHeight.toFloat())
+    //val textRectWithPosition = RectF(x, y , textWidth.toFloat(), textHeight.toFloat())
     Log.d(
       "Marker", "角度：${style.rotate.toFloat()}\n" +
               "x:${x}" +
               "y:${y}" +
               ""
     )
-    canvas.rotate(style.rotate.toFloat(), px, py)
+    canvas.rotate(style.rotate.toFloat(), centerX, centerY)
 
     // Draw text background
     if (null != style.textBackgroundStyle) {
