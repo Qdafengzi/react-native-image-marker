@@ -139,14 +139,6 @@ data class TextOptions(val options: ReadableMap) {
     val x = position.x
     val y = position.y
 
-    val textX = when(textPaint.textAlign) {
-      Paint.Align.RIGHT -> x + textWidth
-      Paint.Align.CENTER -> x + textWidth / 2
-      Paint.Align.LEFT -> x
-    }
-    canvas.translate(textX, y)
-    canvas.save()
-
     Log.d(
       "Marker", "角度：${style.rotate.toFloat()}\n" +
               "textWidth:${textWidth}" +
@@ -205,12 +197,12 @@ data class TextOptions(val options: ReadableMap) {
     }
 
     Log.d("Marker","TextAlign:${textPaint.textAlign}")
-//    val textX = when(textPaint.textAlign) {
-//      Paint.Align.RIGHT -> x + textWidth
-//      Paint.Align.CENTER -> x + textWidth / 2
-//      Paint.Align.LEFT -> x
-//    }
-//    canvas.translate(textX, y)
+    val textX = when(textPaint.textAlign) {
+      Paint.Align.RIGHT -> x + textWidth
+      Paint.Align.CENTER -> x + textWidth / 2
+      Paint.Align.LEFT -> x
+    }
+    canvas.translate(textX, y)
     textLayout.draw(canvas)
     canvas.restore()
   }
