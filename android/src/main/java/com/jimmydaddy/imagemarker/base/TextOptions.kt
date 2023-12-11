@@ -3,6 +3,8 @@ package com.jimmydaddy.imagemarker.base
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.Path
+import android.graphics.RectF
 import android.graphics.Typeface
 import android.os.Build
 import android.text.Layout
@@ -148,41 +150,45 @@ data class TextOptions(val options: ReadableMap) {
     canvas.rotate(style.rotate.toFloat(), centerX, centerY)
 
     // Draw text background
-//    if (null != style.textBackgroundStyle) {
-//      val paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.LINEAR_TEXT_FLAG)
-//      paint.style = Paint.Style.FILL
-//      paint.color = style.textBackgroundStyle!!.color
-//      val bgInsets = style.textBackgroundStyle!!.toEdgeInsets(maxWidth, maxHeight)
-//      var bgRect = RectF(x - bgInsets.left, y - bgInsets.top, x + textWidth + bgInsets.right, y + textHeight + bgInsets.bottom)
-//      when (style.textBackgroundStyle!!.type) {
-//        "stretchX" -> {
-//          bgRect = RectF(0f, y - bgInsets.top, maxWidth.toFloat(),
-//            y + textHeight + bgInsets.bottom
-//          )
-//        }
-//
-//        "stretchY" -> {
-//          bgRect = RectF(x - bgInsets.left, 0f,
-//            x + textWidth + bgInsets.right, maxHeight.toFloat())
-//        }
-//      }
-//
-//      if (style.textBackgroundStyle!!.cornerRadius != null) {
-//        val path = Path()
-//
-//        path.addRoundRect(bgRect, style.textBackgroundStyle!!.cornerRadius!!.radii(bgRect), Path.Direction.CW);
-//
-//        canvas.drawPath(path, paint);
-//      } else {
-//        canvas.drawRect(bgRect, paint)
-//      }
-//    }
-//    val textX = when(textPaint.textAlign) {
-//      Paint.Align.RIGHT -> x + textWidth
-//      Paint.Align.CENTER -> x + textWidth / 2
-//      Paint.Align.LEFT -> x
-//    }
-//    canvas.translate(textX, y)
+    if (null != style.textBackgroundStyle) {
+      Log.d("Marker","textBackgroundStyle")
+
+      val paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.LINEAR_TEXT_FLAG)
+      paint.style = Paint.Style.FILL
+      paint.color = style.textBackgroundStyle!!.color
+      val bgInsets = style.textBackgroundStyle!!.toEdgeInsets(maxWidth, maxHeight)
+      var bgRect = RectF(x - bgInsets.left, y - bgInsets.top, x + textWidth + bgInsets.right, y + textHeight + bgInsets.bottom)
+      when (style.textBackgroundStyle!!.type) {
+        "stretchX" -> {
+          bgRect = RectF(0f, y - bgInsets.top, maxWidth.toFloat(),
+            y + textHeight + bgInsets.bottom
+          )
+        }
+
+        "stretchY" -> {
+          bgRect = RectF(x - bgInsets.left, 0f,
+            x + textWidth + bgInsets.right, maxHeight.toFloat())
+        }
+      }
+
+      if (style.textBackgroundStyle!!.cornerRadius != null) {
+        val path = Path()
+        Log.d("Marker","cornerRadius")
+        path.addRoundRect(bgRect, style.textBackgroundStyle!!.cornerRadius!!.radii(bgRect), Path.Direction.CW);
+
+        canvas.drawPath(path, paint);
+      } else {
+        canvas.drawRect(bgRect, paint)
+      }
+    }
+
+    Log.d("Marker","TextAlign:${textPaint.textAlign}")
+    val textX = when(textPaint.textAlign) {
+      Paint.Align.RIGHT -> x + textWidth
+      Paint.Align.CENTER -> x + textWidth / 2
+      Paint.Align.LEFT -> x
+    }
+    canvas.translate(textX, y)
     textLayout.draw(canvas)
     canvas.restore()
   }
