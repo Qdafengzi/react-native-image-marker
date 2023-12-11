@@ -204,6 +204,8 @@ class ImageMarkerManager(private val context: ReactApplicationContext) : ReactCo
         //保存成功的
         promise.resolve(dest)
       }
+
+       Log.d("Maker","this this this")
     } catch (e: Exception) {
       e.printStackTrace()
       promise.reject("error", e.message, e)
