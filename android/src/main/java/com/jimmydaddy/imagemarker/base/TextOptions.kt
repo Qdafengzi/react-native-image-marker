@@ -150,8 +150,10 @@ data class TextOptions(val options: ReadableMap) {
               "textSize:${textSize}\n" +
               ""
     )
-    val centerX: Float = x + textWidth / 2
-    val centerY: Float = y + textHeight / 2
+
+    //文字宽度的一半
+    val centerX: Float = x + (textWidth shr 1)
+    val centerY: Float = y + (textHeight shr 1)
 
     canvas.save()
 
@@ -198,7 +200,7 @@ data class TextOptions(val options: ReadableMap) {
     val textX = when(textPaint.textAlign) {
       Paint.Align.RIGHT -> x + textWidth
       Paint.Align.CENTER -> x + textWidth / 2
-      Paint.Align.LEFT -> x+margin
+      Paint.Align.LEFT -> x
     }
     canvas.translate(textX, y)
     textLayout.draw(canvas)
