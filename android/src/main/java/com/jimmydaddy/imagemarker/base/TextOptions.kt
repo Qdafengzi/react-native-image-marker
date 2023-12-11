@@ -84,7 +84,7 @@ data class TextOptions(val options: ReadableMap) {
     }
     textPaint.isStrikeThruText = style.strikeThrough
     textPaint.typeface = typeface
-    textPaint.textAlign = style.textAlign
+    //textPaint.textAlign = style.textAlign
     // ALIGN_CENTER, ALIGN_NORMAL, ALIGN_OPPOSITE
     val textLayout: StaticLayout = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
       val builder =
