@@ -16,7 +16,6 @@ import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.views.text.ReactFontManager
 import com.jimmydaddy.imagemarker.base.Constants.DEFAULT_MARGIN
-import kotlin.math.ceil
 
 @Suppress("DEPRECATION")
 data class TextOptions(val options: ReadableMap) {
@@ -107,15 +106,16 @@ data class TextOptions(val options: ReadableMap) {
     }
 
     val textHeight = textLayout.height
+    textLayout.width
 
-    var textWidth = 0
-    val count = textLayout.lineCount
-    for (a in 0 until count) {
-      textWidth = ceil(
-        textWidth.toFloat()
-          .coerceAtLeast(textLayout.getLineWidth(a) + textLayout.getLineLeft(a)).toDouble()
-      ).toInt()
-    }
+    var textWidth =  textLayout.width
+//    val count = textLayout.lineCount
+//    for (a in 0 until count) {
+//      textWidth = ceil(
+//        textWidth.toFloat()
+//          .coerceAtLeast(textLayout.getLineWidth(a) + textLayout.getLineLeft(a)).toDouble()
+//      ).toInt()
+//    }
     val margin = DEFAULT_MARGIN
     var position = Position(margin, margin)
     if (positionEnum != null) {
@@ -201,7 +201,7 @@ data class TextOptions(val options: ReadableMap) {
     val textX = when(textPaint.textAlign) {
       Paint.Align.RIGHT -> x + textWidth
       Paint.Align.CENTER -> x + textWidth / 2
-      Paint.Align.LEFT -> this.x!!.toFloat()
+      Paint.Align.LEFT -> x
     }
     canvas.translate(textX, y)
     textLayout.draw(canvas)
