@@ -150,8 +150,8 @@ data class TextOptions(val options: ReadableMap) {
               ""
     )
 
-    val centerX: Float = x + textWidth / 2 + margin/2f
-    val centerY: Float = y + textHeight / 2+ margin/2f
+    val centerX: Float = x + textWidth / 2 + margin
+    val centerY: Float = y + textHeight / 2 + margin
 
     canvas.save()
     canvas.rotate(style.rotate.toFloat(),centerX , centerY)
