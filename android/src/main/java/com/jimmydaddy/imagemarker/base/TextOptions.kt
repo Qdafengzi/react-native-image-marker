@@ -106,6 +106,7 @@ data class TextOptions(val options: ReadableMap) {
     }
 
     val textHeight = textLayout.height
+
     var textWidth = 0
     val count = textLayout.lineCount
     for (a in 0 until count) {
@@ -138,6 +139,10 @@ data class TextOptions(val options: ReadableMap) {
 
     Log.d(
       "Marker", "角度：${style.rotate.toFloat()}\n" +
+              "textWidth:${textWidth}" +
+              "textHeight:${textHeight}" +
+              "maxWidth:${maxWidth}" +
+              "maxHeight:${maxHeight}" +
               "x:${x}" +
               "y:${y}" +
               "this x:${this.x}" +
@@ -145,8 +150,8 @@ data class TextOptions(val options: ReadableMap) {
               ""
     )
 
-    val centerX: Float = x + textWidth / 2 + margin
-    val centerY: Float = y + textHeight / 2 + margin
+    val centerX: Float = x + textWidth / 2
+    val centerY: Float = y + textHeight / 2
 
     canvas.save()
     canvas.rotate(style.rotate.toFloat(),centerX , centerY)
