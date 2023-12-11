@@ -91,6 +91,7 @@ data class TextOptions(val options: ReadableMap) {
         StaticLayout.Builder.obtain(text!!, 0, text!!.length, textPaint, canvas.width)
       builder.setAlignment(Layout.Alignment.ALIGN_NORMAL)
       builder.setLineSpacing(0.0f, 1.0f)
+      //builder.setIndents()
       builder.setIncludePad(false)
       builder.build()
     } else {
@@ -200,7 +201,7 @@ data class TextOptions(val options: ReadableMap) {
     val textX = when(textPaint.textAlign) {
       Paint.Align.RIGHT -> x + textWidth
       Paint.Align.CENTER -> x + textWidth / 2
-      Paint.Align.LEFT -> x
+      Paint.Align.LEFT -> this.x!!.toFloat()
     }
     canvas.translate(textX, y)
     textLayout.draw(canvas)
