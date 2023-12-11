@@ -66,7 +66,7 @@ data class TextOptions(val options: ReadableMap) {
       textPaint.typeface = Typeface.DEFAULT
     }
     val textSize = TypedValue.applyDimension(
-      TypedValue.COMPLEX_UNIT_DIP,
+      TypedValue.COMPLEX_UNIT_SP,
       style.fontSize.toFloat(),
       context.resources.displayMetrics
     )
@@ -90,8 +90,7 @@ data class TextOptions(val options: ReadableMap) {
       val builder =
         StaticLayout.Builder.obtain(text!!, 0, text!!.length, textPaint, canvas.width)
       builder.setAlignment(Layout.Alignment.ALIGN_NORMAL)
-      builder.setLineSpacing(0.0f, 1.0f)
-      //builder.setIndents()
+//      builder.setLineSpacing(0.0f, 1.0f)
       builder.setIncludePad(false)
       builder.build()
     } else {
