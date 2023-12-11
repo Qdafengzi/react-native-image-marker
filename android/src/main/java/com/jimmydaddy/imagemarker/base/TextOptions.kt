@@ -10,8 +10,8 @@ import android.os.Build
 import android.text.Layout
 import android.text.StaticLayout
 import android.text.TextPaint
-import android.util.TypedValue
 import android.util.Log
+import android.util.TypedValue
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.views.text.ReactFontManager
@@ -135,14 +135,18 @@ data class TextOptions(val options: ReadableMap) {
     val x = position.x
     val y = position.y
 
+    val px: Float = x + textWidth / 2
+    val py: Float = y + textHeight / 2
+
     canvas.save()
     val textRectWithPosition = RectF(x, y , textWidth.toFloat(), textHeight.toFloat())
-    canvas.rotate(style.rotate.toFloat(), textRectWithPosition.centerX(), textRectWithPosition.centerY())
-
-    Log.d("Marker","角度：${style.rotate.toFloat()}\n" +
-                "x:${x}" +
-                "y:${y}" +
-                "")
+    Log.d(
+      "Marker", "角度：${style.rotate.toFloat()}\n" +
+              "x:${x}" +
+              "y:${y}" +
+              ""
+    )
+    canvas.rotate(style.rotate.toFloat(), px, py)
 
     // Draw text background
     if (null != style.textBackgroundStyle) {
