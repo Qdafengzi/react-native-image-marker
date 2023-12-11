@@ -83,8 +83,13 @@ class ImageMarkerManager(private val context: ReactApplicationContext) : ReactCo
           )
           canvas.drawBitmap(markerBitmap, pos.x, pos.y, markOpts.imageOption.applyStyle())
         } else {
-            val px: Float = markOpts.x?.toFloat()?:0f + originWidth / 2f
-                    val py: Float = markOpts.y?.toFloat()?:0f + originHeight / 2f
+                  val px: Float = (markOpts.x?.toFloat()?:0f) + originWidth / 2f
+                    val py: Float =( markOpts.y?.toFloat()?:0f) + originHeight / 2f
+
+                    Log.d("Maker","x:"+(markOpts.x?.toFloat()?:0f))
+                    Log.d("Maker","rotate:"+markOpts.imageOption.rotate)
+                    Log.d("Maker","originWidth:"+originWidth)
+                    Log.d("Maker","originHeight:"+originHeight)
 
                     canvas.save()
                     canvas.translate(px, py)
