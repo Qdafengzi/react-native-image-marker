@@ -11,6 +11,7 @@ import android.text.Layout
 import android.text.StaticLayout
 import android.text.TextPaint
 import android.util.TypedValue
+import android.util.Log
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReadableMap
 import com.facebook.react.views.text.ReactFontManager
