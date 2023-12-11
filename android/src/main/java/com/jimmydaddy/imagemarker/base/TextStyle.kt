@@ -16,7 +16,7 @@ data class TextStyle(val options: ReadableMap?) {
   var textAlign: Align
   var italic: Boolean = if (options?.hasKey("italic") == true) options.getBoolean("italic") else false
   var bold: Boolean = if (options?.hasKey("bold") == true) options.getBoolean("bold") else false
-  var rotate: Int = if (options?.hasKey("rotate") == true) options.getInt("rotate") else 0
+  var rotate: Double = if (options?.hasKey("rotate") == true) options.getDouble("rotate") else 0.0
 
   init {
     val myShadowStyle = options?.getMap("shadowStyle")
