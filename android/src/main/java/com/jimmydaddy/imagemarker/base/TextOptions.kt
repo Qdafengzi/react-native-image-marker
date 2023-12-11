@@ -147,8 +147,8 @@ data class TextOptions(val options: ReadableMap) {
               ""
     )
 
-    val centerX: Float = x + textWidth / 2
-    val centerY: Float = y + textHeight / 2
+    val centerX: Float = x + maxWidth / 2
+    val centerY: Float = y + maxHeight / 2
 
     canvas.save()
     //val textRectWithPosition = RectF(x, y , textWidth.toFloat(), textHeight.toFloat())
